@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+  <link rel="stylesheet" href="style.css" />
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+    var data = [
+        {name: 'Red', value: 'red'},
+        {name: 'Blue', value: 'blue'},
+        {name: 'Yellow', value: 'yellow'},
+        {name: 'Green', value: 'green'},
+        {name: 'White', value: 'White'}
+      ];
+
+      var TabCom=React.createClass({
+        getInitialState:function(){
+          return {selected:this.props.selected};
+        },
+        handleClick:function(event){
+          this.setState({selected:event.target.getAttribute('data-value')});
+        },
+        render:function(){
+          var tabs=this.props.data.map(function(item){
+            var selected=(this.state.selected==item.value)?'selected':'';
+            return (
+              <li key={item.value}
+               onClick={this.handleClick}
+               data-value={item.value}
+               className={selected}>{item.name}</li>
+              );
+          }.bind(this));
+
+          return (
+            <div className="tab-selector">
+            <ul>{tabs}</ul>
+            </div>
+            );
+        }
+      });
+
+      ReactDOM.render(<TabCom data={data} selected={null}/>
+        ,document.getElementById('example'));
+
+    </script>
+  </body>
+</html>

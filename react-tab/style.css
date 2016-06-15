@@ -1,0 +1,60 @@
+html
+{
+    font-size: 62.5%;
+}
+
+body
+{
+    font-size: 1.4rem;
+}
+
+.tab-selector
+{
+    margin: 50px;
+}
+
+.tab-selector
+{
+    overflow: hidden;
+}
+
+.tab-selector label
+{
+    font-weight: bold;
+
+    float: left;
+
+    margin-right: 10px;
+    padding: 5px;
+
+    text-align: left;
+}
+
+.tab-selector ul
+{
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+.tab-selector li
+{
+    float: left;
+
+    margin: 0 10px;
+    padding: 5px 15px;
+
+    list-style: none;
+
+    cursor: pointer;
+
+    border: 1px solid #ddd;
+}
+
+.tab-selector li.selected
+{
+    color: #fff;
+    border-color: #2175bc;
+    background-color: #2175bc;
+}
