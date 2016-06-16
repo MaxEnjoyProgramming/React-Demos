@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8" />
+  <head>
+    <script src="../../build/react.js"></script>
+    <script src="../../build/react-dom.js"></script>
+    <script src="../../build/browser.min.js"></script>
+    <style> 
+    .content {
+        width: 500px;
+        margin: 0 auto;
+        text-align: center;
+    }
+    
+    .content .box {
+        width: 100px;
+        height: 100px;
+        background: #000;
+        margin: 10px auto;
+    }
+    </style>
+  </head>
+  <body>
+    <div id="example"></div>
+    <script type="text/babel">
+    var obj=[
+    {value:"变宽",attr:"width",data:"200px"},
+    {value:"变高",attr:"height",data:"200px"},
+    {value:"变色",attr:"background",data:"red"},
+    {value:"隐藏",attr:"display",data:"none"},
+    {value:"重置",attr:"display",data:"block"}
+    ];
+
+    var ChangeBox=React.createClass({
+      handleClick:function(attr,data,event){
+        (data=="block")&&(this.refs.box.style.cssText=" ");
+        this.refs.box.style[attr]=data;
+      },
+      render:function() {
+        var btns=this.props.obj.map(function(item,index){
+          return (<input type="button" value={item.value} key={index}
+           onClick={this.handleClick.bind(this,item.attr,item.data)}/>)
+        }.bind(this));
+
+        return (
+          <div className="content">
+          {btns}
+          <div className="box" ref="box"></div>
+          </div>
+          );
+      }
+    });
+
+    ReactDOM.render(
+      <ChangeBox obj={obj}/>,
+      document.getElementById('example')
+      );
+    </script>
+  </body>
+</html>
