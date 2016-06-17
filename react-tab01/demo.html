@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8" />
+
+<head>
+    <link rel="stylesheet" href="style.css" />
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div id="example"></div>
+    <script type="text/babel">
+        var tabs=[ 
+        {name:"news",tab:"新闻" ,list:["人民日报三问过度加班：领导没走你敢走吗", "解放军1月内43人晋升少将 含首位空军女师长", "两大将领坐镇首部抗美援朝剧：上将刘源任总顾问", "盘点巡视组遭恐吓：这没你做的事玩一玩回去吧", "运营商推4G套餐不限流量遭吐槽：低速时重回2G"] },
+        {name:"hots",tab:"热点" ,list:[ "解放军1月内43人晋升少将 含首位空军女师长", "两大将领坐镇首部抗美援朝剧：上将刘源任总顾问", "盘点巡视组遭恐吓：这没你做的事玩一玩回去吧"] }, 
+        {name:"local",tab:"本地" ,list:[ "盘点巡视组遭恐吓：这没你做的事玩一玩回去吧", "运营商推4G套餐不限流量遭吐槽：低速时重回2G"] } ];
+
+        var TabCom=React.createClass({
+          getInitialState:function(){
+            return {name:"news"};
+          },
+          handleMouseOver:function(name,event){
+            this.setState({
+              name:name
+            });
+          },
+          render:function(){
+            // tab标签
+            var tabs=this.props.obj.map(function(item,index){
+              var className=(this.state.name==item.name)?"active":"";
+              return <li className={className} key={index} onMouseOver={this.handleMouseOver.bind(this,item.name)}>{item.tab}</li>
+            }.bind(this));
+            // Tab内容
+            var contents=this.props.obj.map(function(item,index){
+              var attr=(this.state.name==item.name)?"block":"none";
+              return (<div style={{display:attr}} key={index}>
+                <ul>{
+                  item.list.map(function(item,index){
+                    return <li key={index}>{item}</li>
+                  })
+                }</ul>
+                </div>);
+            }.bind(this));
+            // 返回
+            return (
+              <div className="main">
+                <ul className="tab">{tabs}</ul>
+                <div className="tab-content">{contents}</div>
+              </div>
+              );
+          }
+        });
+
+        ReactDOM.render(
+          <TabCom obj={tabs}/>,
+          document.getElementById("example")
+          );
+    </script>
+</body>
+
+</html>

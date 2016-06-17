@@ -1,0 +1,63 @@
+ html,
+body,
+div,
+ul,
+li
+{
+    margin: 0;
+    padding: 0;
+}
+
+li
+{
+    list-style-type: none;
+}
+
+.main
+{
+    width: 430px;
+    margin: 10px auto;
+
+    border: 1px solid #000;
+}
+
+.main .tab
+{
+    font-size: 0;
+
+    border-bottom: 1px solid;
+    background: #000;
+    /*消除li之间的间隙*/
+}
+
+.main .tab li
+{
+    font-size: 16px;
+
+    display: inline-block;
+
+    padding: 4px 15px;
+
+    color: #fff;
+    cursor: pointer;
+}
+
+.main .tab li.active
+{
+    color: #000;
+    background: #ccc;
+}
+
+.main .tab-content div
+{
+    padding: 15px 20px;
+}
+
+.main .tab-content div ul li
+{
+    font-size: 14px;
+
+    margin-bottom: 10px;
+
+    list-style: disc;
+}
